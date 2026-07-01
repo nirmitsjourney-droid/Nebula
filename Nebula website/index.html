@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Nebula — Invisible Utility for the Modern Mind</title>
+<meta content="Your personal, private assistant. For life, work, and everything in between." name="description">
+<meta content="Nebula, AI assistant, privacy-first, productivity" name="keywords">
+<meta content="Nebula" name="author">
+
+<!-- Open Graph -->
+<meta content="website" property="og:type">
+<meta content="Nebula — Invisible Utility for the Modern Mind" property="og:title">
+<meta content="Your personal, private assistant. For life, work, and everything in between." property="og:description">
+
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                "colors": {
+                    "tertiary-fixed": "#dde4e6",
+                    "secondary": "#5c5f60",
+                    "surface": "#fcf9f8",
+                    "tertiary-container": "#303739",
+                    "on-primary-container": "#84a4ab",
+                    "error": "#ba1a1a",
+                    "surface-container": "#f0edec",
+                    "surface-dim": "#dcd9d9",
+                    "on-secondary-fixed-variant": "#454748",
+                    "on-secondary-container": "#626566",
+                    "on-surface-variant": "#414849",
+                    "on-background": "#1c1b1b",
+                    "primary-container": "#1a3a40",
+                    "surface-bright": "#fcf9f8",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed": "#001f25",
+                    "surface-container-low": "#f6f3f2",
+                    "on-error-container": "#93000a",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#e1e3e4",
+                    "primary-fixed-dim": "#abccd3",
+                    "inverse-on-surface": "#f3f0ef",
+                    "inverse-surface": "#313030",
+                    "outline-variant": "#c1c8c9",
+                    "on-surface": "#1c1b1b",
+                    "on-secondary-fixed": "#191c1d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#e5e2e1",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#44636a",
+                    "surface-container-high": "#ebe7e7",
+                    "surface-variant": "#e5e2e1",
+                    "outline": "#71787a",
+                    "on-primary-fixed-variant": "#2c4b52",
+                    "on-tertiary-fixed": "#161d1e",
+                    "background": "#fcf9f8",
+                    "on-tertiary-fixed-variant": "#41484a",
+                    "tertiary-fixed-dim": "#c1c8ca",
+                    "secondary-fixed-dim": "#c5c7c8",
+                    "primary": "#01242a",
+                    "inverse-primary": "#abccd3",
+                    "secondary-fixed": "#e1e3e4",
+                    "primary-fixed": "#c7e8f0",
+                    "on-tertiary-container": "#99a0a2",
+                    "on-secondary": "#ffffff",
+                    "tertiary": "#1b2223"
+                },
+                "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "12px",
+                    "2xl": "16px",
+                    "full": "9999px"
+                },
+                "spacing": {
+                    "container-padding": "24px",
+                    "stack-lg": "32px",
+                    "unit": "8px",
+                    "stack-sm": "8px",
+                    "gutter": "16px",
+                    "stack-md": "16px"
+                },
+                "fontFamily": {
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "label-xs": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Plus Jakarta Sans"]
+                },
+                "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-xs": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                }
+            },
+        },
+    }
+</script>
+
+<style>
+    /* ===== Material Symbols ===== */
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        line-height: 1;
+    }
+    .material-symbols-outlined.fill {
+        font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* ===== Shadows ===== */
+    .calrus-shadow {
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.04);
+    }
+    .calrus-shadow-lg {
+        box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.08);
+    }
+    .calrus-shadow-glow {
+        box-shadow: 0px 0px 40px rgba(171, 204, 211, 0.35);
+    }
+
+    /* ===== Glass ===== */
+    .glass-panel {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+    .dark .glass-panel {
+        background: rgba(30, 35, 37, 0.7);
+    }
+
+    /* ===== Logo dark-mode swap ===== */
+    .logo-light { display: inline-block; }
+    .logo-dark { display: none; }
+    html.dark .logo-light { display: none; }
+    html.dark .logo-dark { display: inline-block; }
+
+    /* ===== Nav Active Link ===== */
+    .nav-link-active {
+        position: relative;
+        color: var(--color-primary) !important;
+    }
+    .nav-link-active::after {
+        content: '';
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-primary);
+        border-radius: 2px;
+        animation: slideIn 0.3s ease-out;
+    }
+    @keyframes slideIn {
+        from { width: 0; }
+        to { width: 100%; }
+    }
+
+    /* ===== Scroll Reveal ===== */
+    .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
+
+    @media (prefers-reduced-motion: reduce) {
+        .reveal { opacity: 1; transform: none; transition: none; }
+        html { scroll-behavior: auto; }
+    }
+
+    /* ===== Hero gradient orbs ===== */
+    .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.55;
+        pointer-events: none;
+        animation: floatOrb 18s ease-in-out infinite;
+    }
+    .orb-1 { background: #c7e8f0; width: 380px; height: 380px; top: -100px; right: -80px; animation-delay: 0s; }
+    .orb-2 { background: #abccd3; width: 320px; height: 320px; bottom: -80px; left: 10%; animation-delay: -6s; }
+    .orb-3 { background: #e1e3e4; width: 280px; height: 280px; top: 30%; left: -100px; animation-delay: -12s; }
+    @keyframes floatOrb {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        33% { transform: translate(30px, -20px) scale(1.05); }
+        66% { transform: translate(-20px, 30px) scale(0.95); }
+    }
+
+    /* ===== Marquee for trust bar ===== */
+    .marquee {
+        display: flex;
+        overflow: hidden;
+        user-select: none;
+        gap: 4rem;
+        mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    }
+    .marquee-track {
+        flex-shrink: 0;
+        display: flex;
+        gap: 4rem;
+        min-width: 100%;
+        animation: scrollX 32s linear infinite;
+    }
+    @keyframes scrollX {
+        from { transform: translateX(0); }
+        to { transform: translateX(-100%); }
+    }
+    .marquee:hover .marquee-track {
+        animation-play-state: paused;
+    }
+
+    /* ===== Magnetic button ===== */
+    .magnetic {
+        position: relative;
+        transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ===== Command palette ===== */
+    .cmdk-backdrop { animation: fadeIn 0.15s ease-out; }
+    .cmdk-panel { animation: cmdkIn 0.18s cubic-bezier(0.16, 1, 0.3, 1); }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes cmdkIn {
+        from { opacity: 0; transform: translateY(-12px) scale(0.98); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* ===== Toast ===== */
+    .toast {
+        animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toast.leaving {
+        animation: toastOut 0.25s ease-in forwards;
+    }
+    @keyframes toastIn {
+        from { opacity: 0; transform: translateY(16px) scale(0.96); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes toastOut {
+        to { opacity: 0; transform: translateY(8px) scale(0.96); }
+    }
+
+    /* ===== FAQ Accordion ===== */
+    .faq-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                    padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .faq-item.open .faq-content {
+        max-height: 320px;
+    }
+    .faq-item.open .faq-icon {
+        transform: rotate(180deg);
+    }
+    .faq-icon { transition: transform 0.3s ease; }
+
+    /* ===== Testimonial carousel ===== */
+    .testimonial-track {
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ===== Hero mock UI ===== */
+    .mock-window {
+        background: linear-gradient(180deg, #fcf9f8 0%, #f0edec 100%);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    .mock-dot {
+        width: 10px; height: 10px; border-radius: 50%;
+    }
+    .pulse-dot {
+        animation: pulseDot 1.8s ease-in-out infinite;
+    }
+    @keyframes pulseDot {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(0.85); }
+    }
+    .typing-dots span {
+        display: inline-block;
+        width: 6px; height: 6px;
+        background: #5c5f60;
+        border-radius: 50%;
+        margin: 0 1px;
+        animation: typing 1.2s ease-in-out infinite;
+    }
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typing {
+        0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+        30% { transform: translateY(-4px); opacity: 1; }
+    }
+
+    /* ===== Number ticker ===== */
+    .ticker { font-variant-numeric: tabular-nums; }
+
+    /* ===== Theme toggle icon swap ===== */
+    .theme-icon-sun, .theme-icon-moon {
+        transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    html:not(.dark) .theme-icon-moon { opacity: 1; transform: rotate(0); }
+    html:not(.dark) .theme-icon-sun { opacity: 0; transform: rotate(90deg) scale(0.5); position: absolute; }
+    html.dark .theme-icon-sun { opacity: 1; transform: rotate(0); }
+    html.dark .theme-icon-moon { opacity: 0; transform: rotate(-90deg) scale(0.5); position: absolute; }
+
+    /* ===== Dark mode color overrides ===== */
+    html.dark {
+        background: #1a1d1e;
+        color-scheme: dark;
+    }
+    html.dark body {
+        background: #1a1d1e;
+        color: #f3f0ef;
+    }
+    html.dark .bg-surface { background-color: #1a1d1e !important; }
+    html.dark .bg-surface-container-low { background-color: #1f2324 !important; }
+    html.dark .bg-surface-container { background-color: #2a2e2f !important; }
+    html.dark .bg-surface-container-high\/30 { background-color: rgba(42, 46, 47, 0.5) !important; }
+    html.dark .bg-surface-container-lowest { background-color: #25292a !important; }
+    html.dark .bg-surface-container-highest { background-color: #35393a !important; }
+    html.dark .bg-white { background-color: #25292a !important; }
+    html.dark .text-on-surface { color: #f3f0ef !important; }
+    html.dark .text-secondary { color: #c1c8c9 !important; }
+    html.dark .text-primary { color: #c7e8f0 !important; }
+    html.dark .border-white\/20 { border-color: rgba(255,255,255,0.1) !important; }
+    html.dark .glass-panel { background: rgba(30, 35, 37, 0.7); }
+    html.dark .mock-window { background: linear-gradient(180deg, #25292a 0%, #1f2324 100%); border-color: rgba(255,255,255,0.08); }
+
+    /* ===== Focus ring ===== */
+    *:focus-visible {
+        outline: 2px solid #44636a;
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+
+    /* ===== Custom scrollbar ===== */
+    ::-webkit-scrollbar { width: 10px; height: 10px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #c1c8c9; border-radius: 10px; border: 2px solid transparent; background-clip: padding-box; }
+    ::-webkit-scrollbar-thumb:hover { background: #71787a; background-clip: padding-box; }
+
+    /* ===== Mobile menu ===== */
+    .mobile-menu {
+        transform: translateX(100%);
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu-backdrop {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+    .mobile-menu-backdrop.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* ===== Pricing card highlight ===== */
+    .pricing-popular {
+        position: relative;
+    }
+    .pricing-popular::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        background: linear-gradient(135deg, #c7e8f0, #abccd3);
+        border-radius: 18px;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    /* ===== Skip link ===== */
+    .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        z-index: 100;
+        padding: 12px 20px;
+        background: #01242a;
+        color: white;
+        border-radius: 0 0 8px 0;
+    }
+    .skip-link:focus {
+        left: 0;
+    }
+
+    /* ===== Back to top ===== */
+    .back-to-top {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(16px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .back-to-top.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+</style>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed min-h-screen antialiased">
+
+<!-- Skip link for accessibility -->
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- ===== Cookie Consent ===== -->
+<div id="cookie-consent" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-[60] w-[calc(100%-2rem)] max-w-2xl hidden">
+    <div class="bg-surface-container-lowest calrus-shadow-lg rounded-2xl p-5 border border-outline-variant/30 flex flex-col sm:flex-row items-center gap-4">
+        <span class="material-symbols-outlined text-primary text-3xl">cookie</span>
+        <p class="text-sm text-secondary flex-1 text-center sm:text-left">
+            We use cookies to enhance your browsing experience and analyze site traffic. By clicking "Accept", you consent to our use of cookies.
+        </p>
+        <div class="flex gap-2 w-full sm:w-auto">
+            <button id="cookie-decline" class="flex-1 sm:flex-none px-4 py-2 text-label-sm font-label-sm text-secondary hover:text-primary transition-colors">Decline</button>
+            <button id="cookie-accept" class="flex-1 sm:flex-none px-5 py-2 bg-primary text-on-primary rounded-xl text-label-sm font-label-sm hover:opacity-90 transition-opacity">Accept</button>
+        </div>
+    </div>
+</div>
+
+<!-- ===== Toast Container ===== -->
+<div id="toast-container" class="fixed bottom-6 right-6 z-[80] flex flex-col gap-3 max-w-sm pointer-events-none"></div>
+
+<!-- ===== Navigation Shell ===== -->
+<nav class="fixed top-0 w-full z-50 bg-transparent">
+    <div class="flex justify-between items-center h-[36px] px-4 max-w-[1200px] mx-auto w-full">
+        <a class="font-bold text-[15px] text-primary flex items-center gap-1.5 leading-none" href="#main" aria-label="Nebula home">
+            <img src="assets/nebula-mark.png" alt="Nebula" class="h-6 w-auto logo-light">
+            <img src="assets/nebula-mark.png" alt="Nebula" class="h-6 w-auto logo-dark" style="filter: brightness(0) invert(1);">
+        </a>
+        <div class="hidden md:flex gap-3 items-center">
+            <a class="text-[13px] font-semibold text-on-surface hover:text-primary transition-colors px-1" href="#features" data-nav>Features</a>
+            <a class="text-[13px] font-semibold text-on-surface hover:text-primary transition-colors px-1" href="#how-it-works">How It Works</a>
+            <a class="text-[13px] font-semibold text-on-surface hover:text-primary transition-colors px-1" href="#testimonials">Reviews</a>
+            <a class="text-[13px] font-semibold text-on-surface hover:text-primary transition-colors px-1" href="#pricing">Pricing</a>
+            <a class="text-[13px] font-semibold text-on-surface hover:text-primary transition-colors px-1" href="#faq">FAQ</a>
+            <a class="text-[13px] font-semibold text-on-surface hover:text-primary transition-colors px-1" href="#download">Download</a>
+
+            <!-- Command palette trigger -->
+            <button id="cmdk-trigger" class="ml-1 inline-flex items-center gap-1.5 px-2 py-0.5 bg-surface-container hover:bg-surface-container-high rounded-md text-[11px] font-semibold text-on-surface transition-colors border border-outline-variant/40" aria-label="Open command palette">
+                <span class="material-symbols-outlined text-[13px]">search</span>
+                <span>Search</span>
+                <kbd class="px-1 py-0 bg-surface-container-highest rounded text-[9px] font-mono">⌘K</kbd>
+            </button>
+
+            <!-- Theme toggle -->
+            <button id="theme-toggle" class="ml-1 w-6 h-6 inline-flex items-center justify-center rounded-md hover:bg-surface-container transition-colors text-primary" aria-label="Toggle dark mode">
+                <span class="material-symbols-outlined theme-icon-moon text-[15px]">dark_mode</span>
+                <span class="material-symbols-outlined theme-icon-sun text-[15px]">light_mode</span>
+            </button>
+
+            <button id="get-started-nav" class="ml-1 px-3 py-1 bg-primary text-on-primary rounded-md text-[12px] font-semibold hover:opacity-90 transition-opacity active:scale-95 duration-100 leading-none">
+                Get Started
+            </button>
+        </div>
+
+        <!-- Mobile right side -->
+        <div class="md:hidden flex items-center gap-1">
+            <button id="theme-toggle-mobile" class="w-6 h-6 inline-flex items-center justify-center rounded-md hover:bg-surface-container transition-colors text-primary" aria-label="Toggle dark mode">
+                <span class="material-symbols-outlined theme-icon-moon text-[15px]">dark_mode</span>
+                <span class="material-symbols-outlined theme-icon-sun text-[15px]">light_mode</span>
+            </button>
+            <button id="mobile-menu-trigger" class="w-6 h-6 inline-flex items-center justify-center rounded-md text-primary hover:bg-surface-container transition-colors" aria-label="Open menu" aria-expanded="false">
+                <span class="material-symbols-outlined text-[15px]">menu</span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile menu backdrop -->
+<div id="mobile-menu-backdrop" class="mobile-menu-backdrop fixed inset-0 bg-black/30 backdrop-blur-sm z-[55] md:hidden"></div>
+
+<!-- Mobile menu panel -->
+<aside id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-[300px] max-w-[85vw] bg-surface z-[56] md:hidden shadow-2xl flex flex-col" aria-hidden="true">
+    <div class="flex items-center justify-between p-5 border-b border-outline-variant/20">
+        <span class="font-headline-md font-bold text-primary flex items-center gap-2">
+            <img src="assets/nebula-mark.png" alt="Nebula" class="h-7 w-auto logo-light">
+            <img src="assets/nebula-mark.png" alt="Nebula" class="h-7 w-auto logo-dark" style="filter: brightness(0) invert(1);">
+        </span>
+        <button id="mobile-menu-close" class="w-9 h-9 inline-flex items-center justify-center rounded-lg text-secondary hover:bg-surface-container" aria-label="Close menu">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+    </div>
+    <nav class="flex flex-col p-3 gap-1 flex-1 overflow-y-auto">
+        <a class="mobile-nav-link px-4 py-3 rounded-xl text-body-md text-on-surface hover:bg-surface-container transition-colors flex items-center gap-3" href="#features">
+            <span class="material-symbols-outlined text-primary">auto_awesome</span> Features
+        </a>
+        <a class="mobile-nav-link px-4 py-3 rounded-xl text-body-md text-on-surface hover:bg-surface-container transition-colors flex items-center gap-3" href="#how-it-works">
+            <span class="material-symbols-outlined text-primary">play_circle</span> How It Works
+        </a>
+        <a class="mobile-nav-link px-4 py-3 rounded-xl text-body-md text-on-surface hover:bg-surface-container transition-colors flex items-center gap-3" href="#testimonials">
+            <span class="material-symbols-outlined text-primary">reviews</span> Reviews
+        </a>
+        <a class="mobile-nav-link px-4 py-3 rounded-xl text-body-md text-on-surface hover:bg-surface-container transition-colors flex items-center gap-3" href="#pricing">
+            <span class="material-symbols-outlined text-primary">payments</span> Pricing
+        </a>
+        <a class="mobile-nav-link px-4 py-3 rounded-xl text-body-md text-on-surface hover:bg-surface-container transition-colors flex items-center gap-3" href="#faq">
+            <span class="material-symbols-outlined text-primary">help</span> FAQ
+        </a>
+        <a class="mobile-nav-link px-4 py-3 rounded-xl text-body-md text-on-surface hover:bg-surface-container transition-colors flex items-center gap-3" href="#download">
+            <span class="material-symbols-outlined text-primary">download</span> Download
+        </a>
+    </nav>
+    <div class="p-5 border-t border-outline-variant/20">
+        <button class="mobile-nav-link w-full px-6 py-3 bg-primary text-on-primary rounded-xl font-label-sm text-label-sm hover:opacity-90 transition-opacity" data-action="get-started">
+            Get Started Free
+        </button>
+    </div>
+</aside>
+
+<main id="main" class="pt-[36px]">
+
+<!-- ===== 1. Hero Section ===== -->
+<section class="relative min-h-[92vh] flex items-center px-container-padding overflow-hidden">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="max-w-[1200px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-stack-lg items-center relative z-10">
+        <div class="space-y-stack-md">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-primary-fixed text-on-primary-fixed rounded-full text-label-xs font-label-xs reveal">
+                <span class="material-symbols-outlined fill text-[14px]">verified_user</span>
+                Private by Design
+                <span class="ml-1 inline-flex items-center gap-1 px-2 py-0.5 bg-on-primary-fixed/10 rounded-full text-[10px]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500 pulse-dot"></span>
+                    v2.4 live
+                </span>
+            </div>
+            <h1 class="font-headline-lg text-headline-lg md:text-[56px] md:leading-[64px] text-primary max-w-xl reveal reveal-delay-1">
+                Your personal, private assistant. For life, work, and everything in between.
+            </h1>
+            <p class="text-body-lg font-body-lg text-secondary max-w-lg reveal reveal-delay-2">
+                Nebula sits silently in your digital environment, anticipating needs and organizing complexity without the noise of traditional AI. End-to-end encrypted. Locally hosted. Genuinely yours.
+            </p>
+            <div class="flex flex-wrap gap-gutter pt-stack-sm reveal reveal-delay-3">
+                <button onclick="window.location.href='https://github.com';" id="hero-cta-primary" class="magnetic px-8 py-3 bg-primary text-on-primary rounded-xl font-label-sm text-label-sm calrus-shadow hover:opacity-90 transition-all active:scale-95 inline-flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">rocket_launch</span>
+                    GitHub
+                </button>
+                <button id="hero-cta-secondary" class="px-8 py-3 bg-secondary-container text-on-secondary-container rounded-xl font-label-sm text-label-sm hover:bg-outline-variant transition-all active:scale-95 inline-flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">play_circle</span>
+                    View Demo
+                </button>
+            </div>
+            <div class="flex items-center gap-4 pt-4 reveal reveal-delay-4">
+                <div class="flex -space-x-2">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-pink-300 to-rose-500 border-2 border-surface"></div>
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-amber-300 to-orange-500 border-2 border-surface"></div>
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-300 to-teal-500 border-2 border-surface"></div>
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-violet-300 to-purple-500 border-2 border-surface"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hero Mock UI (SVG-based) -->
+        <div class="relative lg:h-[560px] flex items-center justify-center reveal reveal-delay-2">
+            <div class="w-full h-full calrus-shadow-lg rounded-2xl overflow-hidden glass-panel border border-white/30 relative">
+                <div class="mock-window w-full h-full flex flex-col">
+                    <!-- Window header -->
+                    <div class="flex items-center gap-2 px-4 py-3 border-b border-black/5">
+                        <span class="mock-dot bg-red-400"></span>
+                        <span class="mock-dot bg-amber-400"></span>
+                        <span class="mock-dot bg-green-400"></span>
+                        <div class="ml-3 flex-1 max-w-xs">
+                            <div class="px-3 py-1 bg-black/5 rounded-md text-[11px] text-secondary flex items-center gap-2">
+                                <span class="material-symbols-outlined text-[12px]">lock</span>
+                                nebula.app — encrypted session
+                            </div>
+                        </div>
+                        <span class="text-[11px] text-secondary hidden sm:inline">9:41 AM</span>
+                    </div>
+
+                    <!-- Window body: chat + sidebar -->
+                    <div class="flex-1 flex overflow-hidden">
+                        <!-- Sidebar -->
+                        <div class="hidden sm:flex flex-col w-44 border-r border-black/5 p-3 gap-1">
+                            <div class="flex items-center gap-2 px-2 py-1.5 rounded-lg bg-primary/10 text-primary text-[11px] font-medium">
+                                <span class="material-symbols-outlined text-[14px]">chat_bubble</span> Today
+                            </div>
+                            <div class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-secondary text-[11px] hover:bg-black/5 cursor-pointer">
+                                <span class="material-symbols-outlined text-[14px]">schedule</span> Schedule
+                            </div>
+                            <div class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-secondary text-[11px] hover:bg-black/5 cursor-pointer">
+                                <span class="material-symbols-outlined text-[14px]">description</span> Notes
+                            </div>
+                            <div class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-secondary text-[11px] hover:bg-black/5 cursor-pointer">
+                                <span class="material-symbols-outlined text-[14px]">task_alt</span> Tasks
+                            </div>
+                            <div class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-secondary text-[11px] hover:bg-black/5 cursor-pointer">
+                                <span class="material-symbols-outlined text-[14px]">home</span> Home
+                            </div>
+                            <div class="mt-auto pt-3 border-t border-black/5">
+                                <div class="flex items-center gap-2 px-2 py-1.5 text-[10px] text-secondary">
+                                    <span class="w-2 h-2 rounded-full bg-green-500 pulse-dot"></span>
+                                    3 devices synced
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chat panel -->
+                        <div class="flex-1 flex flex-col p-4 gap-3 overflow-hidden">
+                            <div class="text-[10px] text-secondary text-center">— Today —</div>
+
+                            <!-- AI message -->
+                            <div class="flex gap-2 items-start max-w-[88%]">
+                                <div class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center flex-shrink-0">
+                                    <span class="material-symbols-outlined fill text-[12px]">blur_on</span>
+                                </div>
+                                <div class="bg-white rounded-xl rounded-tl-sm px-3 py-2 text-[12px] text-on-surface shadow-sm">
+                                    Good morning, Alex. I noticed your 10 AM with Dr. Patel conflicts with the school run. Want me to reschedule?
+                                </div>
+                            </div>
+
+                            <!-- User message -->
+                            <div class="flex gap-2 items-start justify-end max-w-[88%] ml-auto">
+                                <div class="bg-primary text-on-primary rounded-xl rounded-tr-sm px-3 py-2 text-[12px] shadow-sm">
+                                    Yes, push it to Thursday and add a reminder.
+                                </div>
+                            </div>
+
+                            <!-- AI typing -->
+                            <div class="flex gap-2 items-start max-w-[88%]">
+                                <div class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center flex-shrink-0">
+                                    <span class="material-symbols-outlined fill text-[12px]">blur_on</span>
+                                </div>
+                                <div class="bg-white rounded-xl rounded-tl-sm px-3 py-2 text-[12px] text-on-surface shadow-sm">
+                                    <div class="typing-dots"><span></span><span></span><span></span></div>
+                                </div>
+                            </div>
+
+                            <!-- Suggestion chips -->
+                            <div class="flex flex-wrap gap-1.5 mt-1">
+                                <span class="px-2 py-1 bg-primary-fixed/40 text-primary rounded-full text-[10px] font-medium">↳ Moved to Thu 10:30</span>
+                                <span class="px-2 py-1 bg-primary-fixed/40 text-primary rounded-full text-[10px] font-medium">↳ Reminder set</span>
+                            </div>
+
+                            <!-- Input -->
+                            <div class="mt-auto flex items-center gap-2 px-3 py-2 bg-white rounded-xl border border-black/5 shadow-sm">
+                                <span class="material-symbols-outlined text-[16px] text-secondary">add</span>
+                                <span class="flex-1 text-[12px] text-secondary">Ask Nebula anything…</span>
+                                <span class="material-symbols-outlined text-[16px] text-primary">mic</span>
+                                <span class="material-symbols-outlined text-[16px] text-primary">arrow_upward</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary-fixed/30 blur-[100px] rounded-full"></div>
+        </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <a href="#trust" class="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-secondary hover:text-primary transition-colors" aria-label="Scroll to explore">
+        <span class="text-[10px] uppercase tracking-widest">Scroll</span>
+        <span class="material-symbols-outlined animate-bounce text-[20px]">keyboard_arrow_down</span>
+    </a>
+</section>
+
+<!-- ===== Brand Identity Banner ===== -->
+<section class="py-20 px-container-padding bg-surface relative overflow-hidden">
+    <div class="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-stack-lg items-center">
+        <div class="space-y-stack-md reveal">
+            <span class="font-label-sm text-label-sm text-surface-tint tracking-widest uppercase">Our Promise</span>
+            <h2 class="font-headline-lg text-headline-lg text-primary">Locked. Loyal. Limitless.</h2>
+            <p class="text-body-lg font-body-lg text-secondary max-w-lg">Three words that anchor everything we build. Nebula is locked to your device, loyal to your context, and limitless in what it can orchestrate on your behalf.</p>
+            <div class="grid grid-cols-3 gap-gutter pt-4 max-w-md">
+                <div class="text-center p-4 bg-surface-container-lowest rounded-xl calrus-shadow">
+                    <span class="material-symbols-outlined fill text-primary mb-1">lock</span>
+                    <div class="font-label-sm font-semibold text-primary">Locked</div>
+                    <div class="text-label-xs text-secondary mt-0.5">Yours alone</div>
+                </div>
+                <div class="text-center p-4 bg-surface-container-lowest rounded-xl calrus-shadow">
+                    <span class="material-symbols-outlined fill text-primary mb-1">favorite</span>
+                    <div class="font-label-sm font-semibold text-primary">Loyal</div>
+                    <div class="text-label-xs text-secondary mt-0.5">Knows you</div>
+                </div>
+                <div class="text-center p-4 bg-surface-container-lowest rounded-xl calrus-shadow">
+                    <span class="material-symbols-outlined fill text-primary mb-1">all_inclusive</span>
+                    <div class="font-label-sm font-semibold text-primary">Limitless</div>
+                    <div class="text-label-xs text-secondary mt-0.5">Grows with you</div>
+                </div>
+            </div>
+        </div>
+        <div class="flex items-center justify-center reveal reveal-delay-1">
+            <div class="relative">
+                <div class="absolute inset-0 bg-primary-fixed/30 blur-3xl rounded-full"></div>
+                <div class="relative bg-surface-container-lowest calrus-shadow-lg rounded-3xl p-12 flex items-center justify-center">
+                    <img src="assets/nebula-logo.png" alt="Nebula — Locked. Loyal. Limitless." class="w-full max-w-sm h-auto logo-light">
+                    <img src="assets/nebula-logo-transparent.png" alt="Nebula — Locked. Loyal. Limitless." class="w-full max-w-sm h-auto logo-dark">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ===== 4. Core Pillars ===== -->
+<section class="py-24 bg-surface-container-low border-t border-outline-variant/20">
+    <div class="max-w-[1200px] mx-auto px-container-padding">
+        <div class="text-center mb-16 space-y-stack-sm reveal">
+            <span class="font-label-sm text-label-sm text-surface-tint tracking-widest uppercase">Foundations</span>
+            <h2 class="font-headline-lg text-headline-lg text-primary">Built for absolute focus</h2>
+            <p class="text-body-md font-body-md text-secondary max-w-2xl mx-auto">Four foundational principles that define the Nebula experience. Every feature we ship is measured against them.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+            <div class="pillar-card group p-8 bg-surface-container-lowest rounded-2xl calrus-shadow space-y-4 hover:-translate-y-1 transition-all duration-300 reveal cursor-pointer" data-pillar="Private">
+                <div class="w-12 h-12 flex items-center justify-center bg-primary-container text-on-primary-container rounded-xl group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined fill">shield</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md text-primary">Private</h3>
+                <p class="text-body-md font-body-md text-secondary">Your data never leaves your device. End-to-end encryption is not an option; it's the core architecture.</p>
+                <div class="pt-2 text-label-xs text-primary font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">Learn more <span class="material-symbols-outlined text-[14px]">arrow_forward</span></div>
+            </div>
+            <div class="pillar-card group p-8 bg-surface-container-lowest rounded-2xl calrus-shadow space-y-4 hover:-translate-y-1 transition-all duration-300 reveal reveal-delay-1 cursor-pointer" data-pillar="Personal">
+                <div class="w-12 h-12 flex items-center justify-center bg-primary-container text-on-primary-container rounded-xl group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined fill">person_pin_circle</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md text-primary">Personal</h3>
+                <p class="text-body-md font-body-md text-secondary">Nebula learns your unique context, habits, and preferences without being intrusive or sending data home.</p>
+                <div class="pt-2 text-label-xs text-primary font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">Learn more <span class="material-symbols-outlined text-[14px]">arrow_forward</span></div>
+            </div>
+            <div class="pillar-card group p-8 bg-surface-container-lowest rounded-2xl calrus-shadow space-y-4 hover:-translate-y-1 transition-all duration-300 reveal reveal-delay-2 cursor-pointer" data-pillar="Vast">
+                <div class="w-12 h-12 flex items-center justify-center bg-primary-container text-on-primary-container rounded-xl group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined fill">language</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md text-primary">Vast</h3>
+                <p class="text-body-md font-body-md text-secondary">Capable of connecting deep technical workflows with everyday simple tasks across 200+ integrations.</p>
+                <div class="pt-2 text-label-xs text-primary font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">Learn more <span class="material-symbols-outlined text-[14px]">arrow_forward</span></div>
+            </div>
+            <div class="pillar-card group p-8 bg-surface-container-lowest rounded-2xl calrus-shadow space-y-4 hover:-translate-y-1 transition-all duration-300 reveal reveal-delay-3 cursor-pointer" data-pillar="Simple">
+                <div class="w-12 h-12 flex items-center justify-center bg-primary-container text-on-primary-container rounded-xl group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined fill">auto_awesome_motion</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md text-primary">Simple</h3>
+                <p class="text-body-md font-body-md text-secondary">No complex prompt engineering. Nebula speaks your language, naturally, in the context you already live in.</p>
+                <div class="pt-2 text-label-xs text-primary font-semibold flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">Learn more <span class="material-symbols-outlined text-[14px]">arrow_forward</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 5. Features - Life Simplified ===== -->
+<section class="py-24 px-container-padding" id="features">
+    <div class="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-stack-lg items-center">
+        <div class="order-2 lg:order-1 reveal">
+            <div class="relative rounded-2xl overflow-hidden calrus-shadow-lg aspect-[4/3] bg-gradient-to-br from-primary-container to-tertiary">
+                <!-- Mock life dashboard SVG -->
+                <svg viewBox="0 0 600 450" class="w-full h-full" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="lifeBg" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#1a3a40"/>
+                            <stop offset="100%" stop-color="#01242a"/>
+                        </linearGradient>
+                        <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+                            <stop offset="100%" stop-color="#f0edec" stop-opacity="0.9"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="600" height="450" fill="url(#lifeBg)"/>
+                    <!-- Background pattern dots -->
+                    <g fill="#84a4ab" opacity="0.15">
+                        <circle cx="50" cy="50" r="2"/><circle cx="120" cy="80" r="2"/><circle cx="200" cy="40" r="2"/>
+                        <circle cx="450" cy="60" r="2"/><circle cx="520" cy="120" r="2"/><circle cx="80" cy="380" r="2"/>
+                        <circle cx="500" cy="400" r="2"/><circle cx="380" cy="420" r="2"/>
+                    </g>
+                    <!-- Card: Calendar -->
+                    <g transform="translate(40, 40)">
+                        <rect width="240" height="180" rx="16" fill="url(#cardGrad)"/>
+                        <text x="20" y="35" font-family="Inter" font-size="14" font-weight="700" fill="#01242a">Today's Flow</text>
+                        <text x="20" y="55" font-family="Inter" font-size="11" fill="#5c5f60">Wednesday, March 12</text>
+                        <line x1="20" y1="68" x2="220" y2="68" stroke="#c1c8c9" stroke-width="1"/>
+                        <g transform="translate(20, 80)">
+                            <circle cx="6" cy="6" r="4" fill="#01242a"/>
+                            <text x="20" y="10" font-family="Inter" font-size="10" fill="#1c1b1b">9:00 · School run</text>
+                        </g>
+                        <g transform="translate(20, 100)">
+                            <circle cx="6" cy="6" r="4" fill="#ba1a1a"/>
+                            <text x="20" y="10" font-family="Inter" font-size="10" fill="#1c1b1b">10:30 · Dr. Patel (moved)</text>
+                        </g>
+                        <g transform="translate(20, 120)">
+                            <circle cx="6" cy="6" r="4" fill="#01242a"/>
+                            <text x="20" y="10" font-family="Inter" font-size="10" fill="#1c1b1b">14:00 · Deep work block</text>
+                        </g>
+                        <g transform="translate(20, 140)">
+                            <circle cx="6" cy="6" r="4" fill="#84a4ab"/>
+                            <text x="20" y="10" font-family="Inter" font-size="10" fill="#5c5f60">18:30 · Family dinner</text>
+                        </g>
+                    </g>
+                    <!-- Card: Smart Home -->
+                    <g transform="translate(310, 40)">
+                        <rect width="250" height="120" rx="16" fill="url(#cardGrad)"/>
+                        <text x="20" y="30" font-family="Inter" font-size="14" font-weight="700" fill="#01242a">Home</text>
+                        <g transform="translate(20, 45)">
+                            <rect width="100" height="60" rx="8" fill="#e1e3e4"/>
+                            <text x="10" y="20" font-family="Inter" font-size="9" fill="#5c5f60">Living room</text>
+                            <text x="10" y="40" font-family="Inter" font-size="14" font-weight="700" fill="#01242a">21°C</text>
+                            <circle cx="80" cy="35" r="8" fill="#01242a"/>
+                        </g>
+                        <g transform="translate(130, 45)">
+                            <rect width="100" height="60" rx="8" fill="#e1e3e4"/>
+                            <text x="10" y="20" font-family="Inter" font-size="9" fill="#5c5f60">Lights</text>
+                            <text x="10" y="40" font-family="Inter" font-size="14" font-weight="700" fill="#01242a">3 on</text>
+                            <circle cx="80" cy="35" r="8" fill="#c7e8f0"/>
+                        </g>
+                    </g>
+                    <!-- Card: Knowledge -->
+                    <g transform="translate(310, 180)">
+                        <rect width="250" height="100" rx="16" fill="url(#cardGrad)"/>
+                        <text x="20" y="30" font-family="Inter" font-size="14" font-weight="700" fill="#01242a">Knowledge base</text>
+                        <g transform="translate(20, 45)">
+                            <rect width="210" height="14" rx="3" fill="#c7e8f0"/>
+                        </g>
+                        <g transform="translate(20, 65)">
+                            <rect width="180" height="14" rx="3" fill="#e1e3e4"/>
+                        </g>
+                        <text x="20" y="92" font-family="Inter" font-size="9" fill="#5c5f60">2,431 notes synced</text>
+                    </g>
+                    <!-- Card: Suggestions -->
+                    <g transform="translate(40, 250)">
+                        <rect width="520" height="170" rx="16" fill="url(#cardGrad)"/>
+                        <g transform="translate(20, 25)">
+                            <circle cx="10" cy="10" r="10" fill="#01242a"/>
+                            <text x="10" y="14" font-family="Inter" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">N</text>
+                            <text x="30" y="14" font-family="Inter" font-size="11" font-weight="600" fill="#01242a">Nebula suggests</text>
+                        </g>
+                        <g transform="translate(20, 55)">
+                            <rect width="480" height="34" rx="8" fill="#f0edec"/>
+                            <circle cx="17" cy="17" r="5" fill="#01242a"/>
+                            <text x="32" y="21" font-family="Inter" font-size="10" fill="#1c1b1b">Prep notes for Thursday's 1:1 with Jordan</text>
+                            <text x="450" y="21" font-family="Inter" font-size="9" fill="#5c5f60">→</text>
+                        </g>
+                        <g transform="translate(20, 95)">
+                            <rect width="480" height="34" rx="8" fill="#f0edec"/>
+                            <circle cx="17" cy="17" r="5" fill="#84a4ab"/>
+                            <text x="32" y="21" font-family="Inter" font-size="10" fill="#1c1b1b">Order groceries — running low on oat milk</text>
+                            <text x="450" y="21" font-family="Inter" font-size="9" fill="#5c5f60">→</text>
+                        </g>
+                        <g transform="translate(20, 135)">
+                            <rect width="480" height="22" rx="6" fill="#c7e8f0"/>
+                            <text x="10" y="15" font-family="Inter" font-size="9" font-weight="600" fill="#001f25">✓ Auto-archived 14 stale docs</text>
+                        </g>
+                    </g>
+                </svg>
+                <div class="absolute bottom-4 right-4 inline-flex items-center gap-2 px-3 py-1.5 bg-surface-container-lowest/90 backdrop-blur rounded-full text-label-xs font-label-xs text-primary calrus-shadow">
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500 pulse-dot"></span>
+                    Live preview
+                </div>
+            </div>
+        </div>
+        <div class="order-1 lg:order-2 space-y-stack-md reveal reveal-delay-1">
+            <span class="font-label-sm text-label-sm text-surface-tint tracking-widest uppercase">Ecosystem</span>
+            <h2 class="font-headline-lg text-headline-lg text-primary">Life Simplified</h2>
+            <p class="text-body-lg font-body-lg text-secondary">Nebula handles the friction of existence. From scheduling medical appointments to managing your smart home and curating your personal knowledge base, it acts as the glue for your digital life.</p>
+            <ul class="space-y-4">
+                <li class="flex gap-3 items-start">
+                    <span class="material-symbols-outlined text-primary fill">check_circle</span>
+                    <div>
+                        <span class="text-body-md text-on-surface font-medium">Invisible Scheduling &amp; Coordination</span>
+                        <p class="text-label-sm text-secondary mt-1">Conflicts resolved before you notice them. Family calendars unified.</p>
+                    </div>
+                </li>
+                <li class="flex gap-3 items-start">
+                    <span class="material-symbols-outlined text-primary fill">check_circle</span>
+                    <div>
+                        <span class="text-body-md text-on-surface font-medium">Context-Aware Family Reminders</span>
+                        <p class="text-label-sm text-secondary mt-1">"Pick up Sarah at 3:15" knows about traffic, weather, and your last meeting.</p>
+                    </div>
+                </li>
+                <li class="flex gap-3 items-start">
+                    <span class="material-symbols-outlined text-primary fill">check_circle</span>
+                    <div>
+                        <span class="text-body-md text-on-surface font-medium">Seamless Personal Knowledge Sync</span>
+                        <p class="text-label-sm text-secondary mt-1">Notes, bookmarks, voice memos — searchable from any device, encrypted at rest.</p>
+                    </div>
+                </li>
+            </ul>
+            <button class="mt-4 inline-flex items-center gap-2 px-5 py-2.5 bg-secondary-container text-on-secondary-container rounded-xl font-label-sm text-label-sm hover:bg-outline-variant transition-all" data-action="learn-life">
+                Explore Life features
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 6. Features - Work Optimized ===== -->
+<section class="py-24 px-container-padding bg-surface-container-high/30">
+    <div class="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-stack-lg items-center">
+        <div class="space-y-stack-md reveal">
+            <span class="font-label-sm text-label-sm text-surface-tint tracking-widest uppercase">Productivity</span>
+            <h2 class="font-headline-lg text-headline-lg text-primary">Work Optimized</h2>
+            <p class="text-body-lg font-body-lg text-secondary">Transition into deep work effortlessly. Nebula integrates with your professional toolkit to draft reports, manage complex project timelines, and provide real-time technical documentation support.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-gutter pt-4">
+                <div class="p-6 bg-surface-container-lowest rounded-xl calrus-shadow hover:-translate-y-1 transition-transform">
+                    <span class="material-symbols-outlined mb-2 text-primary fill inline-flex w-10 h-10 items-center justify-center bg-primary-fixed/30 rounded-lg">terminal</span>
+                    <h4 class="font-label-sm text-label-sm text-primary mb-1 font-semibold">Code &amp; Logic</h4>
+                    <p class="text-label-xs text-secondary">Assistance with syntax, logic flow, and inline documentation across 30+ languages.</p>
+                </div>
+                <div class="p-6 bg-surface-container-lowest rounded-xl calrus-shadow hover:-translate-y-1 transition-transform">
+                    <span class="material-symbols-outlined mb-2 text-primary fill inline-flex w-10 h-10 items-center justify-center bg-primary-fixed/30 rounded-lg">analytics</span>
+                    <h4 class="font-label-sm text-label-sm text-primary mb-1 font-semibold">Data Synthesis</h4>
+                    <p class="text-label-xs text-secondary">Transform raw spreadsheets into actionable professional insights and visuals.</p>
+                </div>
+                <div class="p-6 bg-surface-container-lowest rounded-xl calrus-shadow hover:-translate-y-1 transition-transform">
+                    <span class="material-symbols-outlined mb-2 text-primary fill inline-flex w-10 h-10 items-center justify-center bg-primary-fixed/30 rounded-lg">description</span>
+                    <h4 class="font-label-sm text-label-sm text-primary mb-1 font-semibold">Drafting</h4>
+                    <p class="text-label-xs text-secondary">Reports, briefs, and emails that match your voice — not a generic AI template.</p>
+                </div>
+                <div class="p-6 bg-surface-container-lowest rounded-xl calrus-shadow hover:-translate-y-1 transition-transform">
+                    <span class="material-symbols-outlined mb-2 text-primary fill inline-flex w-10 h-10 items-center justify-center bg-primary-fixed/30 rounded-lg">group_work</span>
+                    <h4 class="font-label-sm text-label-sm text-primary mb-1 font-semibold">Project Sync</h4>
+                    <p class="text-label-xs text-secondary">Jira, Linear, GitHub, Notion — one inbox, one timeline, zero context switching.</p>
+                </div>
+            </div>
+        </div>
+        <div class="reveal reveal-delay-1">
+            <div class="relative rounded-2xl overflow-hidden calrus-shadow-lg aspect-[4/3] bg-gradient-to-br from-tertiary to-primary">
+                <!-- Mock work dashboard SVG -->
+                <svg viewBox="0 0 600 450" class="w-full h-full" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="workBg" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stop-color="#1b2223"/>
+                            <stop offset="100%" stop-color="#01242a"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="600" height="450" fill="url(#workBg)"/>
+                    <!-- Top bar -->
+                    <g transform="translate(30, 30)">
+                        <rect width="540" height="44" rx="10" fill="#fcf9f8"/>
+                        <circle cx="22" cy="22" r="8" fill="#01242a"/>
+                        <text x="22" y="26" font-family="Inter" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">N</text>
+                        <text x="42" y="27" font-family="Inter" font-size="11" font-weight="600" fill="#01242a">Q1 Roadmap · Sync</text>
+                        <g transform="translate(380, 12)">
+                            <rect width="60" height="20" rx="10" fill="#e1e3e4"/>
+                            <text x="30" y="14" font-family="Inter" font-size="9" fill="#5c5f60" text-anchor="middle">3 active</text>
+                        </g>
+                        <g transform="translate(450, 12)">
+                            <rect width="78" height="20" rx="10" fill="#c7e8f0"/>
+                            <text x="39" y="14" font-family="Inter" font-size="9" font-weight="600" fill="#001f25" text-anchor="middle">+ New task</text>
+                        </g>
+                    </g>
+                    <!-- KPI cards -->
+                    <g transform="translate(30, 95)">
+                        <rect width="170" height="90" rx="12" fill="#fcf9f8"/>
+                        <text x="15" y="25" font-family="Inter" font-size="9" fill="#5c5f60">Open PRs</text>
+                        <text x="15" y="55" font-family="Inter" font-size="26" font-weight="700" fill="#01242a">12</text>
+                        <text x="15" y="75" font-family="Inter" font-size="9" fill="#01242a">▼ 3 vs last week</text>
+                    </g>
+                    <g transform="translate(215, 95)">
+                        <rect width="170" height="90" rx="12" fill="#fcf9f8"/>
+                        <text x="15" y="25" font-family="Inter" font-size="9" fill="#5c5f60">Cycle time</text>
+                        <text x="15" y="55" font-family="Inter" font-size="26" font-weight="700" fill="#01242a">2.4d</text>
+                        <text x="15" y="75" font-family="Inter" font-size="9" fill="#5c5f60">▲ 0.3d</text>
+                    </g>
+                    <g transform="translate(400, 95)">
+                        <rect width="170" height="90" rx="12" fill="#fcf9f8"/>
+                        <text x="15" y="25" font-family="Inter" font-size="9" fill="#5c5f60">Focus hours</text>
+                        <text x="15" y="55" font-family="Inter" font-size="26" font-weight="700" fill="#01242a">18h</text>
+                        <text x="15" y="75" font-family="Inter" font-size="9" fill="#01242a">▼ 4h protected</text>
+                    </g>
+                    <!-- Timeline -->
+                    <g transform="translate(30, 205)">
+                        <rect width="540" height="220" rx="12" fill="#fcf9f8"/>
+                        <text x="15" y="25" font-family="Inter" font-size="11" font-weight="700" fill="#01242a">This week</text>
+                        <text x="480" y="25" font-family="Inter" font-size="9" fill="#5c5f60">Mar 10 – 16</text>
+                        <line x1="15" y1="40" x2="525" y2="40" stroke="#e1e3e4" stroke-width="1"/>
+                        <!-- Day columns -->
+                        <g font-family="Inter" font-size="9" fill="#5c5f60">
+                            <text x="55" y="55" text-anchor="middle">Mon</text>
+                            <text x="135" y="55" text-anchor="middle">Tue</text>
+                            <text x="215" y="55" text-anchor="middle">Wed</text>
+                            <text x="295" y="55" text-anchor="middle">Thu</text>
+                            <text x="375" y="55" text-anchor="middle">Fri</text>
+                            <text x="455" y="55" text-anchor="middle">Sat</text>
+                            <text x="510" y="55" text-anchor="middle">Sun</text>
+                        </g>
+                        <!-- Task blocks -->
+                        <g transform="translate(20, 70)">
+                            <rect x="20" y="0" width="60" height="22" rx="4" fill="#01242a"/>
+                            <text x="50" y="14" font-family="Inter" font-size="8" fill="#fff" text-anchor="middle">Deep work</text>
+                        </g>
+                        <g transform="translate(20, 70)">
+                            <rect x="180" y="0" width="120" height="22" rx="4" fill="#84a4ab"/>
+                            <text x="240" y="14" font-family="Inter" font-size="8" fill="#fff" text-anchor="middle">Design review</text>
+                        </g>
+                        <g transform="translate(20, 100)">
+                            <rect x="100" y="0" width="60" height="22" rx="4" fill="#c7e8f0"/>
+                            <text x="130" y="14" font-family="Inter" font-size="8" fill="#001f25" text-anchor="middle">1:1 Jordan</text>
+                        </g>
+                        <g transform="translate(20, 100)">
+                            <rect x="260" y="0" width="80" height="22" rx="4" fill="#01242a"/>
+                            <text x="300" y="14" font-family="Inter" font-size="8" fill="#fff" text-anchor="middle">Sprint demo</text>
+                        </g>
+                        <g transform="translate(20, 130)">
+                            <rect x="20" y="0" width="100" height="22" rx="4" fill="#84a4ab"/>
+                            <text x="70" y="14" font-family="Inter" font-size="8" fill="#fff" text-anchor="middle">Code review</text>
+                        </g>
+                        <g transform="translate(20, 130)">
+                            <rect x="340" y="0" width="100" height="22" rx="4" fill="#c7e8f0"/>
+                            <text x="390" y="14" font-family="Inter" font-size="8" fill="#001f25" text-anchor="middle">Deep work</text>
+                        </g>
+                        <!-- AI suggestion pill -->
+                        <g transform="translate(20, 170)">
+                            <rect width="500" height="34" rx="8" fill="#f0edec"/>
+                            <circle cx="17" cy="17" r="8" fill="#01242a"/>
+                            <text x="17" y="20" font-family="Inter" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">N</text>
+                            <text x="34" y="20" font-family="Inter" font-size="10" fill="#1c1b1b">Move "Deep work" to Friday morning — fewer conflicts detected.</text>
+                            <text x="480" y="20" font-family="Inter" font-size="9" fill="#01242a" font-weight="600">Apply</text>
+                        </g>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ===== 8. Pricing ===== -->
+<section class="py-24 px-container-padding" id="pricing">
+    <div class="max-w-[1200px] mx-auto">
+        <div class="text-center mb-12 space-y-stack-sm reveal">
+            <span class="font-label-sm text-label-sm text-surface-tint tracking-widest uppercase">Pricing</span>
+            <h2 class="font-headline-lg text-headline-lg text-primary">Simple, honest plans</h2>
+            <p class="text-body-md font-body-md text-secondary max-w-2xl mx-auto">Start free. Upgrade when Nebula becomes indispensable. Cancel anytime.</p>
+
+            <!-- Billing toggle -->
+            <div class="inline-flex items-center gap-3 mt-6 p-1 bg-surface-container rounded-full">
+                <button id="billing-monthly" class="px-5 py-2 rounded-full text-label-sm font-label-sm bg-primary text-on-primary transition-all">Monthly</button>
+                <button id="billing-yearly" class="px-5 py-2 rounded-full text-label-sm font-label-sm text-secondary hover:text-primary transition-all">
+                    Yearly
+                    <span class="ml-1 inline-block px-1.5 py-0.5 bg-primary-fixed text-on-primary-fixed rounded-full text-[10px] font-semibold">−20%</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter items-stretch">
+            <!-- Free -->
+            <div class="p-8 bg-surface-container-lowest rounded-2xl calrus-shadow flex flex-col reveal">
+                <h3 class="font-headline-md text-headline-md text-primary">Starter</h3>
+                <p class="text-label-sm text-secondary mt-1">For curious individuals.</p>
+                <div class="my-6">
+                    <span class="font-headline-lg text-headline-lg text-primary font-bold">$0</span>
+                    <span class="text-label-sm text-secondary">/forever</span>
+                </div>
+                <ul class="space-y-3 text-label-sm text-on-surface flex-1">
+                    <li class="flex gap-2 items-start"><span class="material-symbols-outlined text-primary fill text-[18px]">check_circle</span> 1 device sync</li>
+                    <li class="flex gap-2 items-start"><span class="material-symbols-outlined text-primary fill text-[18px]">check_circle</span> 100 AI actions / month</li>
+                    <li class="flex gap-2 items-start"><span class="material-symbols-outlined text-primary fill text-[18px]">check_circle</span> Local encryption</li>
+                    <li class="flex gap-2 items-start"><span class="material-symbols-outlined text-primary fill text-[18px]">check_circle</span> Community support</li>
+                </ul>
+                <button class="mt-6 w-full py-3 bg-secondary-container text-on-secondary-container rounded-xl font-label-sm text-label-sm hover:bg-outline-variant transition-all" data-plan="Starter">Get Starter</button>
+            </div>
+
+            <!-- Pro (popular) -->
+            <div class="pricing-popular p-8 bg-primary text-on-primary rounded-2xl calrus-shadow-glow flex flex-col relative reveal reveal-delay-1">
+                <p class="text-label-sm text-on-primary-container mt-1">For power users &amp; professionals.</p>
+                <div class="my-6">
+                    <span class="font-headline-lg text-headline-lg font-bold price" data-monthly="12" data-yearly="9">$12</span>
+                    <span class="text-label-sm text-on-primary-container">/month</span>
+                    <div class="text-label-xs text-on-primary-container/80 mt-1 billing-note">billed monthly</div>
+                </div>
+                <ul class="space-y-3 text-label-sm flex-1">
+                    <li class="flex gap-2 items-start"><span class="material-symbols-outlined fill text-[18px]">check_circle</span> Unlimited devices</li>
+                    <li class="flex gap-2 items-start"><span class="material-symbols-outlined fill text-[18px]">check_circle</span> Unlimited AI actions</li>
+                    <li class="flex gap-2 items-start"><span class="material-symbols-outlined fill text-[18px]">check_circle</span> 200+ integrations</li>
+                    <li class="flex gap-2 items-start"><span class="material-symbols-outlined fill text-[18px]">check_circle</span> Command palette (⌘K)</li>
+                    <li class="flex gap-2 items-start"><span class="material-symbols-outlined fill text-[18px]">check_circle</span> Priority email support</li>
+                </ul>
+                <button class="mt-6 w-full py-3 bg-surface-bright text-primary rounded-xl font-label-sm text-label-sm hover:bg-white transition-all" data-plan="Pro">Start 14-day trial</button>
+            </div>
+
+            <!-- Team -->
+            <div class="p-8 bg-surface-container-lowest rounded-2xl calrus-shadow flex flex-col reveal reveal-delay-2">
+                <h3 class="font-headline-md text-headline-md text-primary">Team</h3>
+                <p class="text-label-sm text-secondary mt-1">For squads that ship together.</p>
+                <div class="my-6">
+                    <span class="font-headline-lg text-headline-lg text-primary font-bold price" data-monthly="24" data-yearly="19">$24</span>
+                    <span class="text-label-sm text-secondary">/user/month</span>
+                </div>
+                <ul class="space-y-3 text-label-sm text-on-surface flex-1">
+                    <li class="flex gap-2 items-start"><span class="material-symbols-outlined text-primary fill text-[18px]">check_circle</span> Everything in Pro</li>
+                    <li class="flex gap-2 items-start"><span class="material-symbols-outlined text-primary fill text-[18px]">check_circle</span> Shared team context</li>
+                    <li class="flex gap-2 items-start"><span class="material-symbols-outlined text-primary fill text-[18px]">check_circle</span> SSO &amp; SCIM</li>
+                    <li class="flex gap-2 items-start"><span class="material-symbols-outlined text-primary fill text-[18px]">check_circle</span> Admin dashboard</li>
+                    <li class="flex gap-2 items-start"><span class="material-symbols-outlined text-primary fill text-[18px]">check_circle</span> Dedicated success manager</li>
+                </ul>
+                <button class="mt-6 w-full py-3 bg-secondary-container text-on-secondary-container rounded-xl font-label-sm text-label-sm hover:bg-outline-variant transition-all" data-plan="Team">Contact sales</button>
+            </div>
+        </div>
+
+        <p class="text-center text-label-xs text-secondary mt-8 reveal">All plans include end-to-end encryption, local-first storage, and zero telemetry. <a href="#faq" class="text-primary underline hover:no-underline">Compare features →</a></p>
+    </div>
+</section>
+
+<!-- ===== 9. FAQ ===== -->
+<section class="py-24 px-container-padding bg-surface-container-low" id="faq">
+    <div class="max-w-[800px] mx-auto">
+        <div class="text-center mb-12 space-y-stack-sm reveal">
+            <span class="font-label-sm text-label-sm text-surface-tint tracking-widest uppercase">Questions</span>
+            <h2 class="font-headline-lg text-headline-lg text-primary">Questions you might ask</h2>
+            <p class="text-body-md font-body-md text-secondary">Everything you need to know before giving Nebula a try.</p>
+        </div>
+
+        <div class="space-y-3 reveal reveal-delay-1">
+            <div class="faq-item bg-surface-container-lowest rounded-2xl calrus-shadow overflow-hidden">
+                <button class="faq-trigger w-full flex items-center justify-between p-6 text-left" aria-expanded="false">
+                    <span class="font-headline-md text-headline-md text-primary">How does Nebula keep my data private?</span>
+                    <span class="material-symbols-outlined faq-icon text-primary ml-4">expand_more</span>
+                </button>
+                <div class="faq-content px-6">
+                    <p class="text-body-md text-secondary pb-6">All processing happens on your device first. When cloud assistance is required, your data is end-to-end encrypted with keys only you hold. We have no servers that can read your content, no telemetry, no third-party trackers. You can audit the open-source core anytime.</p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-surface-container-lowest rounded-2xl calrus-shadow overflow-hidden">
+                <button class="faq-trigger w-full flex items-center justify-between p-6 text-left" aria-expanded="false">
+                    <span class="font-headline-md text-headline-md text-primary">Which platforms do you support?</span>
+                    <span class="material-symbols-outlined faq-icon text-primary ml-4">expand_more</span>
+                </button>
+                <div class="faq-content px-6">
+                    <p class="text-body-md text-secondary pb-6">macOS 12+, Windows 10+, Linux (Ubuntu, Fedora, Arch), iOS 16+, Android 12+, and a Progressive Web App for everything else. Raspberry Pi and home-server binaries are available for self-hosting enthusiasts.</p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-surface-container-lowest rounded-2xl calrus-shadow overflow-hidden">
+                <button class="faq-trigger w-full flex items-center justify-between p-6 text-left" aria-expanded="false">
+                    <span class="font-headline-md text-headline-md text-primary">Can Nebula work without an internet connection?</span>
+                    <span class="material-symbols-outlined faq-icon text-primary ml-4">expand_more</span>
+                </button>
+                <div class="faq-content px-6">
+                    <p class="text-body-md text-secondary pb-6">Yes. The core assistant, scheduling, knowledge base, and smart-home integrations run entirely offline. Cloud-powered features (web search, large document summarization) gracefully degrade when offline and queue actions for when you reconnect.</p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-surface-container-lowest rounded-2xl calrus-shadow overflow-hidden">
+                <button class="faq-trigger w-full flex items-center justify-between p-6 text-left" aria-expanded="false">
+                    <span class="font-headline-md text-headline-md text-primary">How is this different from ChatGPT or Claude?</span>
+                    <span class="material-symbols-outlined faq-icon text-primary ml-4">expand_more</span>
+                </button>
+                <div class="faq-content px-6">
+                    <p class="text-body-md text-secondary pb-6">General AI chatbots wait for you to ask. Nebula proactively orchestrates your real environment — files, calendar, email, smart home, code repos — and acts on your behalf with your permission. It's an agent, not a chat box.</p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-surface-container-lowest rounded-2xl calrus-shadow overflow-hidden">
+                <button class="faq-trigger w-full flex items-center justify-between p-6 text-left" aria-expanded="false">
+                    <span class="font-headline-md text-headline-md text-primary">Can I cancel anytime?</span>
+                    <span class="material-symbols-outlined faq-icon text-primary ml-4">expand_more</span>
+                </button>
+                <div class="faq-content px-6">
+                    <p class="text-body-md text-secondary pb-6">Yes — no contracts, no exit fees. Cancel from your account settings in one click. You'll keep Pro features until the end of your billing period, then automatically drop to the free Starter plan. Your data stays yours; export it as a structured archive anytime.</p>
+                </div>
+            </div>
+
+            <div class="faq-item bg-surface-container-lowest rounded-2xl calrus-shadow overflow-hidden">
+                <button class="faq-trigger w-full flex items-center justify-between p-6 text-left" aria-expanded="false">
+                    <span class="font-headline-md text-headline-md text-primary">Do you offer student or non-profit discounts?</span>
+                    <span class="material-symbols-outlined faq-icon text-primary ml-4">expand_more</span>
+                </button>
+                <div class="faq-content px-6">
+                    <p class="text-body-md text-secondary pb-6">Yes — 50% off Pro for verified students and educators, and free Team plans for registered non-profits. Reach out via the contact form with your credentials and we'll set you up within one business day.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-10 reveal">
+            <p class="text-label-sm text-secondary">Still have questions?</p>
+            <a href="#" class="inline-flex items-center gap-2 mt-2 text-primary font-label-sm hover:underline" data-action="contact">
+                <span class="material-symbols-outlined text-[18px]">mail</span>
+                Talk to a human
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 10. Download Section ===== -->
+<section class="py-24 px-container-padding" id="download">
+    <div class="max-w-[1000px] mx-auto text-center space-y-stack-lg">
+        <div class="space-y-stack-sm reveal">
+            <span class="font-label-sm text-label-sm text-surface-tint tracking-widest uppercase">Available everywhere</span>
+            <h2 class="font-headline-lg text-headline-lg text-primary">Get Nebula on all your devices</h2>
+            <p class="text-body-lg font-body-lg text-secondary">Stay connected and organized across your entire ecosystem. One account, every platform, zero friction.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+            <div class="p-8 bg-surface-container rounded-2xl flex flex-col items-center gap-6 reveal">
+                <span class="material-symbols-outlined fill text-4xl text-primary">smartphone</span>
+                <h4 class="font-headline-md text-headline-md text-primary">Mobile</h4>
+                <div class="flex flex-col gap-3 w-full">
+                    <button class="download-btn flex items-center justify-center gap-3 w-full py-3 bg-primary text-on-primary rounded-xl font-label-sm text-label-sm hover:opacity-90 transition-all" data-platform="App Store">
+                        <span class="material-symbols-outlined">apps</span> App Store
+                    </button>
+                    <button class="download-btn flex items-center justify-center gap-3 w-full py-3 bg-secondary-container text-on-secondary-container rounded-xl font-label-sm text-label-sm hover:bg-outline-variant transition-all" data-platform="Google Play">
+                        <span class="material-symbols-outlined">play_arrow</span> Google Play
+                    </button>
+                </div>
+            </div>
+            <div class="p-8 bg-primary text-on-primary rounded-2xl flex flex-col items-center gap-6 calrus-shadow-glow reveal reveal-delay-1">
+                <span class="material-symbols-outlined fill text-4xl">desktop_windows</span>
+                <h4 class="font-headline-md text-headline-md">Desktop</h4>
+                <div class="flex flex-col gap-3 w-full">
+                    <button class="download-btn flex items-center justify-center gap-3 w-full py-3 bg-surface-bright text-primary rounded-xl font-label-sm text-label-sm hover:bg-white transition-all" data-platform="macOS">
+                        <span class="material-symbols-outlined">laptop_mac</span> macOS
+                    </button>
+                    <div class="flex gap-3">
+                        <button class="download-btn flex-1 py-3 bg-primary-container text-on-primary-container border border-white/20 rounded-xl font-label-sm text-label-sm hover:bg-white/10 transition-all text-xs" data-platform="Windows">Windows</button>
+                        <button class="download-btn flex-1 py-3 bg-primary-container text-on-primary-container border border-white/20 rounded-xl font-label-sm text-label-sm hover:bg-white/10 transition-all text-xs" data-platform="Linux">Linux</button>
+                    </div>
+                </div>
+            </div>
+            <div class="p-8 bg-surface-container rounded-2xl flex flex-col items-center gap-6 reveal reveal-delay-2">
+                <span class="material-symbols-outlined fill text-4xl text-primary">memory</span>
+                <h4 class="font-headline-md text-headline-md text-primary">IoT &amp; Self-host</h4>
+                <div class="flex flex-col gap-3 w-full">
+                    <button class="download-btn flex items-center justify-center gap-3 w-full py-3 bg-secondary-container text-on-secondary-container rounded-xl font-label-sm text-label-sm hover:bg-outline-variant transition-all" data-platform="Raspberry Pi">
+                        <span class="material-symbols-outlined">developer_board</span> Raspberry Pi
+                    </button>
+                    <button class="download-btn flex items-center justify-center gap-3 w-full py-3 bg-secondary-container text-on-secondary-container rounded-xl font-label-sm text-label-sm hover:bg-outline-variant transition-all" data-platform="Docker">
+                        <span class="material-symbols-outlined">cloud_sync</span> Docker image
+                    </button>
+                    <p class="text-label-xs text-secondary italic">Open-source binary available</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== 11. Getting Started / How it works ===== -->
+<section class="py-24 bg-tertiary text-on-tertiary" id="how-it-works">
+    <div class="max-w-[1200px] mx-auto px-container-padding">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-stack-lg items-center">
+            <div class="lg:col-span-5 space-y-stack-md reveal">
+                <span class="font-label-sm text-label-sm text-primary-fixed tracking-widest uppercase">Onboarding</span>
+                <h2 class="font-headline-lg text-headline-lg">Getting Started</h2>
+                <p class="text-body-lg font-body-lg text-on-tertiary-container">Transitioning to a more focused digital life takes less than three minutes. No setup wizards, no configuration files, no friction.</p>
+                <button onclick="window.location.href='https://github.com';"; class="px-8 py-3 bg-primary-fixed text-on-primary-fixed rounded-xl font-label-sm text-label-sm hover:opacity-90 transition-all inline-flex items-center gap-2" data-action="docs">
+                    <span class="material-symbols-outlined text-[18px]">menu_book</span>
+                    Full Documentation
+                </button>
+            </div>
+            <div class="lg:col-span-7 grid grid-cols-1 gap-gutter">
+                <div class="step-card flex gap-gutter items-center p-6 bg-tertiary-container rounded-2xl border border-white/5 hover:border-primary-fixed/30 transition-colors reveal">
+                    <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-primary-fixed text-on-primary-fixed rounded-full font-bold">1</div>
+                    <div class="flex-1">
+                        <h4 class="font-headline-md text-headline-md text-white">Download</h4>
+                        <p class="text-body-md text-on-tertiary-container">Install the lightweight agent on your primary device. ~12 MB, no admin rights required.</p>
+                    </div>
+                    <span class="material-symbols-outlined text-primary-fixed/60 hidden sm:block">download</span>
+                </div>
+                <div class="step-card flex gap-gutter items-center p-6 bg-tertiary-container rounded-2xl border border-white/5 hover:border-primary-fixed/30 transition-colors reveal reveal-delay-1">
+                    <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-primary-fixed text-on-primary-fixed rounded-full font-bold">2</div>
+                    <div class="flex-1">
+                        <h4 class="font-headline-md text-headline-md text-white">Connect</h4>
+                        <p class="text-body-md text-on-tertiary-container">Grant secure local access to your calendar, files, and email. Revoke any permission anytime.</p>
+                    </div>
+                    <span class="material-symbols-outlined text-primary-fixed/60 hidden sm:block">link</span>
+                </div>
+                <div class="step-card flex gap-gutter items-center p-6 bg-tertiary-container rounded-2xl border border-white/5 hover:border-primary-fixed/30 transition-colors reveal reveal-delay-2">
+                    <div class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-primary-fixed text-on-primary-fixed rounded-full font-bold">3</div>
+                    <div class="flex-1">
+                        <h4 class="font-headline-md text-headline-md text-white">Simplify</h4>
+                        <p class="text-body-md text-on-tertiary-container">Watch as complexity fades into the background. Open the command palette (⌘K) anytime to ask, do, or automate.</p>
+                    </div>
+                    <span class="material-symbols-outlined text-primary-fixed/60 hidden sm:block">auto_awesome</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ===== Footer ===== -->
+<footer class="bg-surface-container-low border-t border-outline-variant/20 pt-16 pb-8">
+    <div class="max-w-[1200px] mx-auto px-container-padding">
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+            <div class="col-span-2 space-y-stack-md">
+                <a class="flex items-center gap-2" href="#main" aria-label="Nebula home">
+                    <img src="assets/nebula-mark.png" alt="Nebula" class="h-9 w-auto logo-light">
+                    <img src="assets/nebula-mark.png" alt="Nebula" class="h-9 w-auto logo-dark" style="filter: brightness(0) invert(1);">
+                </a>
+                <p class="font-body-md text-body-md text-secondary max-w-sm">Invisible Utility for the Modern Mind. Built privacy-first, locally and abroad.</p>
+                <div class="flex gap-3 pt-2">
+                    <a href="#" class="footer-social w-9 h-9 inline-flex items-center justify-center rounded-lg bg-surface-container hover:bg-surface-container-high text-primary transition-colors" aria-label="GitHub" data-social="GitHub">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="flex flex-col gap-stack-sm">
+                <span class="text-label-xs font-label-xs text-primary uppercase tracking-widest">Product</span>
+                <a class="text-secondary hover:text-primary transition-all font-body-md text-body-md" href="#download">Download</a>
+                <a class="text-secondary hover:text-primary transition-all font-body-md text-body-md" href="#features">Features</a>
+                <a class="text-secondary hover:text-primary transition-all font-body-md text-body-md" href="#pricing">Pricing</a>
+                <a class="text-secondary hover:text-primary transition-all font-body-md text-body-md" href="#" data-action="changelog">Changelog</a>
+            </div>
+            <div class="flex flex-col gap-stack-sm">
+                <span class="text-label-xs font-label-xs text-primary uppercase tracking-widest">Company</span>
+                <a class="text-secondary hover:text-primary transition-all font-body-md text-body-md" href="#" data-action="privacy">Privacy Policy</a>
+                <a class="text-secondary hover:text-primary transition-all font-body-md text-body-md" href="#" data-action="terms">Terms of Service</a>
+                <a class="text-secondary hover:text-primary transition-all font-body-md text-body-md" href="#" data-action="security">Security</a>
+                <a class="text-secondary hover:text-primary transition-all font-body-md text-body-md" href="#" data-action="careers">Careers</a>
+            </div>
+            <div class="flex flex-col gap-stack-sm">
+                <span class="text-label-xs font-label-xs text-primary uppercase tracking-widest">Resources</span>
+                <a class="text-secondary hover:text-primary transition-all font-body-md text-body-md" href="#" data-action="docs">Documentation</a>
+                <a class="text-secondary hover:text-primary transition-all font-body-md text-body-md" href="#" data-action="blog">Blog</a>
+                <a class="text-secondary hover:text-primary transition-all font-body-md text-body-md" href="#" data-action="community">Community</a>
+                <a class="text-secondary hover:text-primary transition-all font-body-md text-body-md" href="#" data-action="status">Status</a>
+            </div>
+        </div>
+        <div class="pt-8 border-t border-outline-variant/20 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p class="font-body-md text-body-md text-secondary">© 2024 Nebula. Invisible Utility for the Modern Mind.</p>
+            <div class="flex items-center gap-4 text-label-xs text-secondary">
+                <span class="inline-flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-green-500 pulse-dot"></span>
+                    All systems operational
+                </span>
+                <span>·</span>
+                <span>Made with care, not ads</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ===== Back to top button ===== -->
+<button id="back-to-top" class="back-to-top fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-primary text-on-primary calrus-shadow-lg hover:opacity-90 transition-all flex items-center justify-center" aria-label="Back to top">
+    <span class="material-symbols-outlined">arrow_upward</span>
+</button>
+
+<!-- ===== Command Palette Modal ===== -->
+<div id="cmdk-backdrop" class="cmdk-backdrop fixed inset-0 bg-black/40 backdrop-blur-sm z-[70] hidden items-start justify-center pt-[12vh] px-4">
+    <div class="cmdk-panel w-full max-w-xl bg-surface-container-lowest rounded-2xl calrus-shadow-lg overflow-hidden border border-outline-variant/30" role="dialog" aria-modal="true" aria-label="Command palette">
+        <div class="flex items-center gap-3 px-4 py-3 border-b border-outline-variant/20">
+            <span class="material-symbols-outlined text-secondary">search</span>
+            <input
+                id="cmdk-input"
+                type="text"
+                placeholder="Search actions, pages, or topics…"
+                class="flex-1 bg-transparent outline-none text-body-md text-on-surface placeholder:text-secondary"
+                autocomplete="off"
+            >
+            <kbd class="px-1.5 py-0.5 bg-surface-container-highest rounded text-[10px] font-mono text-secondary">ESC</kbd>
+        </div>
+        <ul id="cmdk-list" class="max-h-[50vh] overflow-y-auto p-2" role="listbox"></ul>
+        <div class="px-4 py-2.5 border-t border-outline-variant/20 flex items-center justify-between text-[11px] text-secondary">
+            <div class="flex items-center gap-3">
+                <span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 bg-surface-container-highest rounded font-mono">↑↓</kbd> navigate</span>
+                <span class="flex items-center gap-1"><kbd class="px-1.5 py-0.5 bg-surface-container-highest rounded font-mono">↵</kbd> select</span>
+            </div>
+            <span>Nebula Quick Actions</span>
+        </div>
+    </div>
+</div>
+
+<script>
+/* ============================================================
+   Nebula Landing — Interactive Layer
+   ============================================================ */
+
+(function() {
+    'use strict';
+
+    /* ---------- Toast System ---------- */
+    function toast(message, opts = {}) {
+        const container = document.getElementById('toast-container');
+        if (!container) return;
+        const { type = 'info', duration = 3500, icon } = opts;
+        const icons = {
+            success: 'check_circle',
+            error: 'error',
+            info: 'info',
+            download: 'download'
+        };
+        const colors = {
+            success: 'text-green-600',
+            error: 'text-red-600',
+            info: 'text-primary',
+            download: 'text-primary'
+        };
+        const el = document.createElement('div');
+        el.className = 'toast pointer-events-auto bg-surface-container-lowest calrus-shadow-lg rounded-xl p-4 flex items-start gap-3 border border-outline-variant/30 max-w-sm';
+        el.innerHTML = `
+            <span class="material-symbols-outlined fill ${colors[type] || colors.info}">${icon || icons[type] || icons.info}</span>
+            <div class="flex-1 text-body-md text-on-surface">${message}</div>
+            <button class="text-secondary hover:text-primary transition-colors" aria-label="Dismiss">
+                <span class="material-symbols-outlined text-[18px]">close</span>
+            </button>
+        `;
+        container.appendChild(el);
+        const dismiss = () => {
+            el.classList.add('leaving');
+            setTimeout(() => el.remove(), 250);
+        };
+        el.querySelector('button').addEventListener('click', dismiss);
+        if (duration) setTimeout(dismiss, duration);
+    }
+
+    /* ---------- Theme Toggle ---------- */
+    const THEME_KEY = 'nebula-theme';
+    function getTheme() { return localStorage.getItem(THEME_KEY) || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+    function applyTheme(theme) {
+        if (theme === 'dark') document.documentElement.classList.add('dark');
+        else document.documentElement.classList.remove('dark');
+        localStorage.setItem(THEME_KEY, theme);
+    }
+    applyTheme(getTheme());
+    document.querySelectorAll('#theme-toggle, #theme-toggle-mobile').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+            applyTheme(next);
+            toast(`Switched to ${next} mode`, { type: 'info', icon: next === 'dark' ? 'dark_mode' : 'light_mode', duration: 2000 });
+        });
+    });
+
+    /* ---------- Mobile Menu ---------- */
+    const menuPanel = document.getElementById('mobile-menu');
+    const menuBackdrop = document.getElementById('mobile-menu-backdrop');
+    const menuTrigger = document.getElementById('mobile-menu-trigger');
+    const menuClose = document.getElementById('mobile-menu-close');
+    function openMenu() {
+        menuPanel.classList.add('open');
+        menuBackdrop.classList.add('open');
+        menuPanel.setAttribute('aria-hidden', 'false');
+        menuTrigger.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+        menuPanel.classList.remove('open');
+        menuBackdrop.classList.remove('open');
+        menuPanel.setAttribute('aria-hidden', 'true');
+        menuTrigger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }
+    menuTrigger.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+    menuBackdrop.addEventListener('click', closeMenu);
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    /* ---------- Scroll Spy ---------- */
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"][data-nav]');
+    function updateSpy() {
+        let current = '';
+        const scrollPos = window.pageYOffset;
+        sections.forEach(section => {
+            const top = section.offsetTop - 60;
+            if (scrollPos >= top) current = section.getAttribute('id');
+        });
+        navLinks.forEach(link => {
+            link.classList.toggle('nav-link-active', link.getAttribute('href').substring(1) === current);
+        });
+    }
+    window.addEventListener('scroll', updateSpy, { passive: true });
+    updateSpy();
+
+    /* ---------- Scroll Reveal (IntersectionObserver) ---------- */
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+    reveals.forEach(el => revealObserver.observe(el));
+
+    /* ---------- Animated Counters ---------- */
+    const counters = document.querySelectorAll('[data-counter]');
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const target = parseFloat(el.dataset.target);
+            const suffix = el.dataset.suffix || '';
+            const decimals = parseInt(el.dataset.decimals || '0', 10);
+            const duration = 1800;
+            const start = performance.now();
+            function tick(now) {
+                const t = Math.min(1, (now - start) / duration);
+                const eased = 1 - Math.pow(1 - t, 3);
+                const val = target * eased;
+                let display = decimals > 0 ? val.toFixed(decimals) : Math.floor(val).toLocaleString();
+                el.textContent = display + suffix;
+                if (t < 1) requestAnimationFrame(tick);
+                else el.textContent = (decimals > 0 ? target.toFixed(decimals) : Math.floor(target).toLocaleString()) + suffix;
+            }
+            requestAnimationFrame(tick);
+            counterObserver.unobserve(el);
+        });
+    }, { threshold: 0.5 });
+    counters.forEach(c => counterObserver.observe(c));
+
+    /* ---------- FAQ Accordion ---------- */
+    document.querySelectorAll('.faq-trigger').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.faq-item');
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => {
+                i.classList.remove('open');
+                i.querySelector('.faq-trigger').setAttribute('aria-expanded', 'false');
+            });
+            if (!isOpen) {
+                item.classList.add('open');
+                btn.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+
+    /* ---------- Pricing Toggle ---------- */
+    const monthlyBtn = document.getElementById('billing-monthly');
+    const yearlyBtn = document.getElementById('billing-yearly');
+    function setBilling(mode) {
+        const isYearly = mode === 'yearly';
+        monthlyBtn.classList.toggle('bg-primary', !isYearly);
+        monthlyBtn.classList.toggle('text-on-primary', !isYearly);
+        monthlyBtn.classList.toggle('text-secondary', isYearly);
+        yearlyBtn.classList.toggle('bg-primary', isYearly);
+        yearlyBtn.classList.toggle('text-on-primary', isYearly);
+        yearlyBtn.classList.toggle('text-secondary', !isYearly);
+        document.querySelectorAll('.price').forEach(p => {
+            const val = isYearly ? p.dataset.yearly : p.dataset.monthly;
+            p.textContent = '$' + val;
+        });
+        document.querySelectorAll('.billing-note').forEach(n => {
+            n.textContent = isYearly ? 'billed annually' : 'billed monthly';
+        });
+    }
+    monthlyBtn.addEventListener('click', () => setBilling('monthly'));
+    yearlyBtn.addEventListener('click', () => setBilling('yearly'));
+
+    /* ---------- Testimonial Carousel ---------- */
+    const track = document.getElementById('testimonial-track');
+    const slides = track ? track.querySelectorAll('.testimonial-slide') : [];
+    const dotsContainer = document.getElementById('testimonial-dots');
+    let currentSlide = 0;
+    let autoplayId = null;
+
+    slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'w-2 h-2 rounded-full bg-outline-variant transition-all';
+        dot.setAttribute('aria-label', `Go to testimonial ${i + 1}`);
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+    });
+
+    function updateDots() {
+        dotsContainer.querySelectorAll('button').forEach((d, i) => {
+            d.classList.toggle('bg-primary', i === currentSlide);
+            d.classList.toggle('w-6', i === currentSlide);
+            d.classList.toggle('bg-outline-variant', i !== currentSlide);
+        });
+    }
+    function goToSlide(i) {
+        currentSlide = (i + slides.length) % slides.length;
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        updateDots();
+        resetAutoplay();
+    }
+    function resetAutoplay() {
+        if (autoplayId) clearInterval(autoplayId);
+        autoplayId = setInterval(() => goToSlide(currentSlide + 1), 6000);
+    }
+    document.getElementById('testimonial-prev').addEventListener('click', () => goToSlide(currentSlide - 1));
+    document.getElementById('testimonial-next').addEventListener('click', () => goToSlide(currentSlide + 1));
+    if (slides.length) { updateDots(); resetAutoplay(); }
+
+    /* Pause autoplay on hover */
+    const carouselEl = track ? track.closest('.relative') : null;
+    if (carouselEl) {
+        carouselEl.addEventListener('mouseenter', () => autoplayId && clearInterval(autoplayId));
+        carouselEl.addEventListener('mouseleave', resetAutoplay);
+    }
+
+    /* ---------- Back to Top ---------- */
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+        backToTop.classList.toggle('visible', window.pageYOffset > 600);
+    }, { passive: true });
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* ---------- Cookie Consent ---------- */
+    const COOKIE_KEY = 'nebula-cookie-consent';
+    const cookieBanner = document.getElementById('cookie-consent');
+    if (!localStorage.getItem(COOKIE_KEY)) {
+        setTimeout(() => cookieBanner.classList.remove('hidden'), 1500);
+    }
+    document.getElementById('cookie-accept').addEventListener('click', () => {
+        localStorage.setItem(COOKIE_KEY, 'accepted');
+        cookieBanner.classList.add('hidden');
+        toast('Cookies accepted. Thanks!', { type: 'success', duration: 2500 });
+    });
+    document.getElementById('cookie-decline').addEventListener('click', () => {
+        localStorage.setItem(COOKIE_KEY, 'declined');
+        cookieBanner.classList.add('hidden');
+        toast('Cookies declined. We respect that.', { type: 'info', duration: 2500 });
+    });
+
+    /* ---------- Newsletter Form ---------- */
+    document.getElementById('newsletter-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('newsletter-email').value.trim();
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            toast('Please enter a valid email address.', { type: 'error' });
+            return;
+        }
+        toast(`Subscribed! Welcome aboard, ${email.split('@')[0]}.`, { type: 'success', icon: 'mark_email_read' });
+        e.target.reset();
+    });
+
+    /* ---------- Download Buttons ---------- */
+    document.querySelectorAll('.download-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const platform = btn.dataset.platform;
+            toast(`Starting download for ${platform}…`, { type: 'download', icon: 'download', duration: 3000 });
+        });
+    });
+
+    /* ---------- Pricing CTAs ---------- */
+    document.querySelectorAll('[data-plan]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const plan = btn.dataset.plan;
+            if (plan === 'Team') {
+                toast('Sales team will reach out within one business day.', { type: 'info', icon: 'forward_to_inbox' });
+            } else {
+                toast(`Starting ${plan} plan setup…`, { type: 'success', icon: 'rocket_launch' });
+            }
+        });
+    });
+
+    /* ---------- Hero & nav CTAs ---------- */
+    document.getElementById('hero-cta-primary').addEventListener('click', () => {
+        document.getElementById('download').scrollIntoView({ behavior: 'smooth' });
+    });
+    document.getElementById('hero-cta-secondary').addEventListener('click', () => {
+        toast('Demo video would open here. (Demo reel in production.)', { type: 'info', icon: 'play_circle', duration: 3500 });
+    });
+    document.getElementById('get-started-nav').addEventListener('click', () => {
+        document.getElementById('download').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    /* ---------- Pillar cards ---------- */
+    document.querySelectorAll('.pillar-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const pillar = card.dataset.pillar;
+            toast(`"${pillar}" deep-dive coming soon in our docs.`, { type: 'info', icon: 'menu_book' });
+        });
+    });
+
+    /* ---------- Generic action buttons ---------- */
+    document.querySelectorAll('[data-action]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const action = btn.dataset.action;
+            const messages = {
+                'learn-life': 'Opening Life feature tour…',
+                'contact': 'Opening contact form…',
+                'docs': 'Loading documentation…',
+                'changelog': 'Loading changelog…',
+                'privacy': 'Loading privacy policy…',
+                'terms': 'Loading terms of service…',
+                'security': 'Loading security overview…',
+                'careers': 'Loading careers page…',
+                'blog': 'Loading blog…',
+                'community': 'Loading community forum…',
+                'status': 'Loading status page…',
+                'get-started': 'Taking you to download…'
+            };
+            toast(messages[action] || 'Action triggered.', { type: 'info', icon: 'open_in_new' });
+            if (action === 'get-started' || action === 'docs') {
+                document.getElementById('download').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    /* ---------- Footer social ---------- */
+    document.querySelectorAll('.footer-social').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const social = link.dataset.social;
+            toast(`Opening Nebula on ${social}…`, { type: 'info', icon: 'open_in_new' });
+        });
+    });
+
+    /* ---------- Magnetic effect on primary buttons ---------- */
+    document.querySelectorAll('.magnetic').forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            btn.style.transform = `translate(${x * 0.15}px, ${y * 0.25}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+            btn.style.transform = '';
+        });
+    });
+
+    /* ---------- Command Palette ---------- */
+    const cmdkBackdrop = document.getElementById('cmdk-backdrop');
+    const cmdkInput = document.getElementById('cmdk-input');
+    const cmdkList = document.getElementById('cmdk-list');
+    const cmdkTrigger = document.getElementById('cmdk-trigger');
+
+    const cmdkItems = [
+        { label: 'Go to Features', icon: 'auto_awesome', action: () => document.getElementById('features').scrollIntoView({ behavior: 'smooth' }) },
+        { label: 'Go to How It Works', icon: 'play_circle', action: () => document.getElementById('how-it-works').scrollIntoView({ behavior: 'smooth' }) },
+        { label: 'Go to Reviews', icon: 'reviews', action: () => document.getElementById('testimonials').scrollIntoView({ behavior: 'smooth' }) },
+        { label: 'Go to Pricing', icon: 'payments', action: () => document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' }) },
+        { label: 'Go to FAQ', icon: 'help', action: () => document.getElementById('faq').scrollIntoView({ behavior: 'smooth' }) },
+        { label: 'Go to Download', icon: 'download', action: () => document.getElementById('download').scrollIntoView({ behavior: 'smooth' }) },
+        { label: 'Toggle dark mode', icon: 'dark_mode', action: () => document.getElementById('theme-toggle').click() },
+        { label: 'Get Nebula Free', icon: 'rocket_launch', action: () => document.getElementById('download').scrollIntoView({ behavior: 'smooth' }) },
+        { label: 'View Demo', icon: 'play_circle', action: () => document.getElementById('hero-cta-secondary').click() },
+        { label: 'Subscribe to newsletter', icon: 'mark_email_read', action: () => document.getElementById('newsletter-email').focus() },
+        { label: 'Contact sales', icon: 'mail', action: () => toast('Sales team will reach out shortly.', { type: 'info', icon: 'forward_to_inbox' }) },
+        { label: 'Open documentation', icon: 'menu_book', action: () => toast('Loading documentation…', { type: 'info', icon: 'menu_book' }) },
+        { label: 'View privacy policy', icon: 'shield', action: () => toast('Loading privacy policy…', { type: 'info', icon: 'shield' }) },
+        { label: 'Back to top', icon: 'arrow_upward', action: () => window.scrollTo({ top: 0, behavior: 'smooth' }) }
+    ];
+    let cmdkActiveIndex = 0;
+    let cmdkFiltered = [...cmdkItems];
+
+    function renderCmdk() {
+        cmdkList.innerHTML = '';
+        cmdkFiltered.forEach((item, i) => {
+            const li = document.createElement('li');
+            li.className = `flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer ${i === cmdkActiveIndex ? 'bg-surface-container' : 'hover:bg-surface-container'} text-on-surface`;
+            li.setAttribute('role', 'option');
+            li.innerHTML = `<span class="material-symbols-outlined text-primary">${item.icon}</span><span class="text-body-md">${item.label}</span>`;
+            li.addEventListener('click', () => { item.action(); closeCmdk(); });
+            li.addEventListener('mouseenter', () => { cmdkActiveIndex = i; updateCmdkHighlight(); });
+            cmdkList.appendChild(li);
+        });
+        if (cmdkFiltered.length === 0) {
+            cmdkList.innerHTML = `<li class="px-3 py-6 text-center text-secondary text-body-md">No matches found</li>`;
+        }
+    }
+    function updateCmdkHighlight() {
+        cmdkList.querySelectorAll('li').forEach((li, i) => {
+            li.classList.toggle('bg-surface-container', i === cmdkActiveIndex);
+        });
+    }
+    function filterCmdk(q) {
+        cmdkFiltered = cmdkItems.filter(item => item.label.toLowerCase().includes(q.toLowerCase()));
+        cmdkActiveIndex = 0;
+        renderCmdk();
+    }
+    function openCmdk() {
+        cmdkBackdrop.classList.remove('hidden');
+        cmdkBackdrop.classList.add('flex');
+        cmdkFiltered = [...cmdkItems];
+        cmdkActiveIndex = 0;
+        renderCmdk();
+        setTimeout(() => cmdkInput.focus(), 50);
+    }
+    function closeCmdk() {
+        cmdkBackdrop.classList.add('hidden');
+        cmdkBackdrop.classList.remove('flex');
+        cmdkInput.value = '';
+    }
+    cmdkTrigger.addEventListener('click', openCmdk);
+    cmdkBackdrop.addEventListener('click', (e) => { if (e.target === cmdkBackdrop) closeCmdk(); });
+    cmdkInput.addEventListener('input', (e) => filterCmdk(e.target.value));
+    cmdkInput.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown') { e.preventDefault(); cmdkActiveIndex = Math.min(cmdkActiveIndex + 1, cmdkFiltered.length - 1); updateCmdkHighlight(); cmdkList.querySelectorAll('li')[cmdkActiveIndex]?.scrollIntoView({ block: 'nearest' }); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); cmdkActiveIndex = Math.max(cmdkActiveIndex - 1, 0); updateCmdkHighlight(); cmdkList.querySelectorAll('li')[cmdkActiveIndex]?.scrollIntoView({ block: 'nearest' }); }
+        else if (e.key === 'Enter') { e.preventDefault(); if (cmdkFiltered[cmdkActiveIndex]) { cmdkFiltered[cmdkActiveIndex].action(); closeCmdk(); } }
+        else if (e.key === 'Escape') { closeCmdk(); }
+    });
+
+    /* Global keyboard shortcut: Cmd/Ctrl + K */
+    document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            if (cmdkBackdrop.classList.contains('hidden')) openCmdk();
+            else closeCmdk();
+        }
+        if (e.key === 'Escape' && !cmdkBackdrop.classList.contains('hidden')) closeCmdk();
+    });
+
+    /* ---------- Smooth anchor scrolling (offset for fixed nav) ---------- */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', (e) => {
+            const href = a.getAttribute('href');
+            if (href === '#' || href.length < 2) return;
+            const target = document.querySelector(href);
+            if (!target) return;
+            e.preventDefault();
+            const top = target.getBoundingClientRect().top + window.pageYOffset - 36;
+            window.scrollTo({ top, behavior: 'smooth' });
+        });
+    });
+
+    /* ---------- Welcome toast ---------- */
+    setTimeout(() => {
+        toast('Welcome to Nebula. Try ⌘K to open quick actions.', { type: 'info', icon: 'keyboard', duration: 5000 });
+    }, 1200);
+
+})();
+</script>
+
+</body>
+</html>
